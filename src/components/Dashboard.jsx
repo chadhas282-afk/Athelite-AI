@@ -28,3 +28,33 @@ export default function Dashboard({ profile }) {
   const [error, setError] = useState(null);
 
   const generateOfflineSchedule = (prof) => {
+    const tStartSchool = timeToMinutes(prof.academics.startTime);
+    const tEndSchool = timeToMinutes(prof.academics.endTime);
+    let tStartSport = timeToMinutes(prof.sports.trainingStart);
+    let tEndSport = timeToMinutes(prof.sports.trainingEnd);
+    
+    if (tEndSport < tStartSport) tEndSport += 24 * 60;
+    
+    const mToSchool = parseInt(prof.logistics.homeToSchool) || 0;
+    const mToSport = parseInt(prof.logistics.schoolToAcademy) || 0;
+    const mToHome = parseInt(prof.logistics.academyToHome) || 0;
+
+    const schedule = [];
+    const insights = [];
+
+    const tWakeUp = tStartSchool - 90;
+    schedule.push({
+      time: formatRange(tWakeUp, tStartSchool - mToSchool),
+      activity: "🍳 Wake Up & Breakfast",
+      type: "routine",
+      notes: "Hydrate, eat a balanced breakfast, and prepare your gear for the day."
+    });
+
+    if (mToSchool > 0) {
+      schedule.push({
+        time: formatRange(tStartSchool - mToSchool, tStartSchool),
+        activity: "🚌 Transit to School",
+        type: "transit",
+        notes: "Listen to some light music or a short podcast to wake your brain up."
+      });
+    }
