@@ -28,3 +28,30 @@ export default function ScheduleView({ schedule }) {
           const { icon: Icon, color, bg, border } = getTypeConfig(item.type);
           
           return (
+            <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+              
+              <div className={`flex items-center justify-center w-10 h-10 rounded-full border-4 border-dark-base ${bg} ${color} shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10`}>
+                <Icon className="w-4 h-4" />
+              </div>
+              
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-dark-border bg-dark-base shadow-sm hover:border-gray-500 transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <span className={`text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wider ${bg} ${color} ${border} border`}>
+                    {item.type}
+                  </span>
+                  <span className="text-xs font-medium text-gray-400 flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    {item.time}
+                  </span>
+                </div>
+                <h4 className="text-sm font-semibold text-white mb-1">{item.activity}</h4>
+                <p className="text-xs text-gray-400 leading-relaxed">{item.notes}</p>
+              </div>
+              
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
