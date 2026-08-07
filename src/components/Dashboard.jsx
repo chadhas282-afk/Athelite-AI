@@ -58,3 +58,43 @@ export default function Dashboard({ profile }) {
         notes: "Listen to some light music or a short podcast to wake your brain up."
       });
     }
+
+    schedule.push({
+      time: formatRange(tStartSchool, tEndSchool),
+      activity: "📝 Academics: " + (prof.academics.course || "School/College"),
+      type: "academic",
+      notes: "💡 Tip: Focus 100% here so you don't have to study late night."
+    });
+
+    const tStartTransitSport = tStartSport - mToSport;
+    if (tStartTransitSport > tEndSchool) {
+      schedule.push({
+        time: formatRange(tEndSchool, tStartTransitSport),
+        activity: "🔋 Free Time / Rest",
+        type: "routine",
+        notes: "Take a break, grab a quick snack, and recharge before heading to training."
+      });
+    } else if (tStartTransitSport < tEndSchool) {
+      
+    }
+
+    if (mToSport > 0) {
+      schedule.push({
+        time: formatRange(Math.max(tEndSchool, tStartTransitSport), tStartSport),
+        activity: "🎒 Transit to Academy",
+        type: "study",
+        notes: `Transit time: ${mToSport} mins. Tip: Listen to a quick educational podcast or revise formulas on your phone.`
+      });
+    }
+
+    schedule.push({
+      time: formatRange(tStartSport, tEndSport),
+      activity: `👟 Training: ${prof.sports.sportName}`,
+      type: "athletic",
+      notes: "🔥 Training Mode: Stay hydrated and give your 100%!"
+    });
+
+    const tArriveHome = tEndSport + mToHome;
+    if (mToHome > 0) {
+      schedule.push({
+        time: formatRange(tEndSport, tArriveHome),
