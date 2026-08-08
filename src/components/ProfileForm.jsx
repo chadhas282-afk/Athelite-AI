@@ -98,3 +98,23 @@ export default function ProfileForm({ profile, onSaveProfile }) {
               </div>
             </div>
           </div>
+          </section>
+
+
+        <section>
+          <div className="flex items-center gap-2 mb-4 text-gray-300">
+            <Map className="w-5 h-5" />
+            <h3 className="font-semibold text-gray-100">Transit (mins)</h3>
+          </div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="block text-[10px] text-gray-400 mb-1 truncate">Home &rarr; School</label>
+                <input required type="number" min="0" value={formData.logistics.homeToSchool} onChange={e => handleChange('logistics', 'homeToSchool', e.target.value)} className="w-full bg-dark-base border border-dark-border rounded-lg px-2 py-2 text-sm text-center text-white focus:border-gray-400 outline-none" placeholder="30" />
+              </div>
+              <div>
+                <label className="block text-[10px] text-gray-400 mb-1 truncate">School &rarr; Sport</label>
+                <input required type="number" min="0" value={formData.logistics.schoolToAcademy} onChange={e => handleChange('logistics', 'schoolToAcademy', e.target.value)} className="w-full bg-dark-base border border-dark-border rounded-lg px-2 py-2 text-sm text-center text-white focus:border-gray-400 outline-none" placeholder="20" />
+              </div>
+              <div>
+                <label className="block text-[10px] text-gray-400 mb-1 truncate">Sport &rarr; Home</label>
