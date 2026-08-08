@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   const handleSaveProfile = (newProfile) => {
-        setProfile(newProfile);
+    setProfile(newProfile);
     localStorage.setItem('athelite_profile', JSON.stringify(newProfile));
   };
 
