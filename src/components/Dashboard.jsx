@@ -128,3 +128,33 @@ export default function Dashboard({ profile }) {
         schedule.push({
             time: formatRange(tEndStudy, tSleepStartAdjusted > tEndStudy ? tSleepStartAdjusted : tSleepStartAdjusted + 24*60),
             activity: "🧘 Wind Down",
+            type: "routine",
+            notes: "Screen-free time. Read a book, stretch, and relax."
+        });
+    }
+
+    schedule.push({
+      time: formatRange(tSleepStartAdjusted, tWakeUp < tSleepStartAdjusted ? tWakeUp + 24*60 : tWakeUp),
+      activity: "💤 Sleep (8 Hours)",
+      type: "routine",
+      notes: `Aim for 8 hours of sleep to recover fully for tomorrow.`
+    });
+
+    insights.push(`Sleep Optimization: Going to bed by ${minutesToTime(tSleepStart)} ensures you get a full 8 hours of rest before waking up at ${minutesToTime(tWakeUp)}.`);
+    insights.push(`Nutrition Timing: Your high-protein dinner is scheduled at ${minutesToTime(tArriveHome)}, perfectly timed post-training.`);
+    if (mToSport > 0) {
+        insights.push(`Micro-Learning: You can accumulate over ${(mToSport * 5) / 60} hours of extra study time per week just during your transit to training!`);
+    }
+
+    return { schedule, insights };
+  };
+
+  const generateSchedule = () => {
+    if (!profile || !profile.academics.startTime || !profile.sports.trainingStart) {
+      setError("Please fill out your profile completely (including times) and save first.");
+      return;
+    }
+    setError(null);
+    setLoading(true);
+
+    setTimeout(() => {
