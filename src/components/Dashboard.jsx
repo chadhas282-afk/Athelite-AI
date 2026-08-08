@@ -98,3 +98,33 @@ export default function Dashboard({ profile }) {
     if (mToHome > 0) {
       schedule.push({
         time: formatRange(tEndSport, tArriveHome),
+        activity: "🚌 Transit to Home",
+        type: "transit",
+        notes: "Cool down mentally. Hydrate and review your training."
+      });
+    }
+
+    const tEndDinner = tArriveHome + 60; 
+    schedule.push({
+      time: formatRange(tArriveHome, tEndDinner),
+      activity: "🥗 Recovery & Dinner",
+      type: "recovery",
+      notes: "Consume a high-protein meal to help with muscle recovery after training."
+    });
+
+    const tEndStudy = tEndDinner + 90; 
+    schedule.push({
+      time: formatRange(tEndDinner, tEndStudy),
+      activity: "📚 High-Focus Study Session",
+      type: "study",
+      notes: "Dedicated 1.5-hour block. Put your phone away and focus on deep work."
+    });
+
+    const tSleepStart = tWakeUp - (8 * 60); 
+    let tSleepStartAdjusted = tSleepStart;
+    if (tSleepStartAdjusted < 0) tSleepStartAdjusted += 24 * 60;
+
+    if (tEndStudy < tSleepStartAdjusted || (tEndStudy > tSleepStartAdjusted && tEndStudy < 24*60 && tSleepStartAdjusted < 12*60)) {
+        schedule.push({
+            time: formatRange(tEndStudy, tSleepStartAdjusted > tEndStudy ? tSleepStartAdjusted : tSleepStartAdjusted + 24*60),
+            activity: "🧘 Wind Down",
