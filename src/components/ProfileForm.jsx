@@ -18,7 +18,7 @@ export default function ProfileForm({ profile, onSaveProfile }) {
       homeToSchool: '',
       schoolToAcademy: '',
       academyToHome: '',
-      }
+    }
   });
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function ProfileForm({ profile, onSaveProfile }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSaveProfile(formData);
-     };
+  };
 
   return (
     <div className="bg-dark-surface border border-dark-border rounded-2xl p-6 shadow-lg">
@@ -58,7 +58,7 @@ export default function ProfileForm({ profile, onSaveProfile }) {
             <div>
               <label className="block text-xs text-gray-400 mb-1">Stream / Course</label>
               <input required type="text" value={formData.academics.course} onChange={e => handleChange('academics', 'course', e.target.value)} placeholder="e.g. High School Science" className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none" />
-              </div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs text-gray-400 mb-1">Start Time</label>
@@ -78,7 +78,7 @@ export default function ProfileForm({ profile, onSaveProfile }) {
             <Trophy className="w-5 h-5" />
             <h3 className="font-semibold text-gray-100">Athletics</h3>
           </div>
-           <div className="space-y-4">
+          <div className="space-y-4">
             <div>
               <label className="block text-xs text-gray-400 mb-1">Sport</label>
               <input required type="text" value={formData.sports.sportName} onChange={e => handleChange('sports', 'sportName', e.target.value)} placeholder="e.g. Basketball, Swimming" className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-neon-green focus:ring-1 focus:ring-neon-green outline-none" />
@@ -98,7 +98,7 @@ export default function ProfileForm({ profile, onSaveProfile }) {
               </div>
             </div>
           </div>
-          </section>
+        </section>
 
 
         <section>
@@ -118,3 +118,17 @@ export default function ProfileForm({ profile, onSaveProfile }) {
               </div>
               <div>
                 <label className="block text-[10px] text-gray-400 mb-1 truncate">Sport &rarr; Home</label>
+                <input required type="number" min="0" value={formData.logistics.academyToHome} onChange={e => handleChange('logistics', 'academyToHome', e.target.value)} className="w-full bg-dark-base border border-dark-border rounded-lg px-2 py-2 text-sm text-center text-white focus:border-gray-400 outline-none" placeholder="45" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <button type="submit" className="w-full mt-4 flex items-center justify-center gap-2 bg-dark-border hover:bg-gray-600 text-white font-medium py-3 rounded-xl transition-colors">
+          <Save className="w-4 h-4" />
+          Save Profile
+        </button>
+      </form>
+    </div>
+  );
+}
