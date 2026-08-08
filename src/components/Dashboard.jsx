@@ -158,3 +158,33 @@ export default function Dashboard({ profile }) {
     setLoading(true);
 
     setTimeout(() => {
+      try {
+        const data = generateOfflineSchedule(profile);
+        setScheduleData(data);
+      } catch (err) {
+        setError("An error occurred while generating the schedule.");
+      } finally {
+        setLoading(false);
+      }
+    }, 600);
+  };
+
+  return (
+    <div className="flex flex-col h-full space-y-6">
+      
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-dark-surface p-6 rounded-2xl border border-dark-border shadow-lg">
+        <div>
+          <h2 className="text-2xl font-bold text-white mb-1">Your Dashboard</h2>
+          <p className="text-gray-400 text-sm">Smart offline scheduling based on your inputs.</p>
+        </div>
+        <button
+          onClick={generateSchedule}
+          disabled={loading}
+          className="flex items-center justify-center gap-2 bg-neon-green hover:bg-[#32e011] text-black font-bold py-3 px-6 rounded-xl transition-all shadow-[0_0_15px_rgba(57,255,20,0.3)] hover:shadow-[0_0_25px_rgba(57,255,20,0.5)] disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <Zap className={`w-5 h-5 ${loading ? 'animate-pulse' : ''}`} />
+          {loading ? 'Generating...' : 'Generate Smart Schedule'}
+        </button>
+      </div>
+
+      {error && (
