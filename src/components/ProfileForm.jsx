@@ -58,3 +58,23 @@ export default function ProfileForm({ profile, onSaveProfile }) {
             <div>
               <label className="block text-xs text-gray-400 mb-1">Stream / Course</label>
               <input required type="text" value={formData.academics.course} onChange={e => handleChange('academics', 'course', e.target.value)} placeholder="e.g. High School Science" className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none" />
+              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Start Time</label>
+                <input required type="time" value={formData.academics.startTime} onChange={e => handleChange('academics', 'startTime', e.target.value)} className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-electric-blue outline-none color-scheme-dark" />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">End Time</label>
+                <input required type="time" value={formData.academics.endTime} onChange={e => handleChange('academics', 'endTime', e.target.value)} className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-electric-blue outline-none color-scheme-dark" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section>
+          <div className="flex items-center gap-2 mb-4 text-neon-green">
+            <Trophy className="w-5 h-5" />
+            <h3 className="font-semibold text-gray-100">Athletics</h3>
+          </div>
