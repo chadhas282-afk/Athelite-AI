@@ -38,3 +38,23 @@ export default function ProfileForm({ profile, onSaveProfile }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSaveProfile(formData);
+     };
+
+  return (
+    <div className="bg-dark-surface border border-dark-border rounded-2xl p-6 shadow-lg">
+      <div className="mb-6">
+        <h2 className="text-xl font-bold text-white mb-2">Athlete Profile</h2>
+        <p className="text-sm text-gray-400">Set your schedule parameters for the AI</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-8">
+
+        <section>
+          <div className="flex items-center gap-2 mb-4 text-electric-blue">
+            <BookOpen className="w-5 h-5" />
+            <h3 className="font-semibold text-gray-100">Academics</h3>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-xs text-gray-400 mb-1">Stream / Course</label>
+              <input required type="text" value={formData.academics.course} onChange={e => handleChange('academics', 'course', e.target.value)} placeholder="e.g. High School Science" className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none" />
