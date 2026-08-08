@@ -78,3 +78,23 @@ export default function ProfileForm({ profile, onSaveProfile }) {
             <Trophy className="w-5 h-5" />
             <h3 className="font-semibold text-gray-100">Athletics</h3>
           </div>
+           <div className="space-y-4">
+            <div>
+              <label className="block text-xs text-gray-400 mb-1">Sport</label>
+              <input required type="text" value={formData.sports.sportName} onChange={e => handleChange('sports', 'sportName', e.target.value)} placeholder="e.g. Basketball, Swimming" className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-neon-green focus:ring-1 focus:ring-neon-green outline-none" />
+            </div>
+            <div>
+              <label className="block text-xs text-gray-400 mb-1">Training Days</label>
+              <input required type="text" value={formData.sports.days} onChange={e => handleChange('sports', 'days', e.target.value)} placeholder="e.g. Mon, Wed, Fri" className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-neon-green outline-none" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Training Start</label>
+                <input required type="time" value={formData.sports.trainingStart} onChange={e => handleChange('sports', 'trainingStart', e.target.value)} className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-neon-green outline-none color-scheme-dark" />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-400 mb-1">Training End</label>
+                <input required type="time" value={formData.sports.trainingEnd} onChange={e => handleChange('sports', 'trainingEnd', e.target.value)} className="w-full bg-dark-base border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:border-neon-green outline-none color-scheme-dark" />
+              </div>
+            </div>
+          </div>
