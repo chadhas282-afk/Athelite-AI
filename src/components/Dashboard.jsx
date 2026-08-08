@@ -188,3 +188,35 @@ export default function Dashboard({ profile }) {
       </div>
 
       {error && (
+        <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-4 rounded-xl flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+          <p className="text-sm">{error}</p>
+        </div>
+      )}
+
+      {loading && (
+        <div className="space-y-6 animate-pulse">
+          <div className="h-64 bg-dark-surface rounded-2xl border border-dark-border"></div>
+          <div className="h-40 bg-dark-surface rounded-2xl border border-dark-border"></div>
+        </div>
+      )}
+
+      {!loading && scheduleData && (
+        <div className="grid grid-cols-1 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <ScheduleView schedule={scheduleData.schedule} />
+          <InsightsCard insights={scheduleData.insights} />
+        </div>
+      )}
+
+      {!loading && !scheduleData && !error && (
+        <div className="flex-1 flex flex-col items-center justify-center text-center p-12 border border-dashed border-dark-border rounded-2xl bg-dark-surface/50">
+          <Zap className="w-12 h-12 text-gray-500 mb-4 opacity-50" />
+          <h3 className="text-lg font-medium text-gray-300">Ready to Optimize</h3>
+          <p className="text-sm text-gray-500 mt-2 max-w-sm">
+            Fill in your profile details and hit the generate button to create your personalized offline athletic schedule.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
